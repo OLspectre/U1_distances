@@ -21,9 +21,18 @@ createAllCityBoxes();
 
 function markCityObject(cityObject, kindOfCity) {
     let promptObject = document.getElementById(cityObject.name); /* promptObject refererar till ett HTML-element med ID (argumentet.name), 
-                                                                 alltså argumentet som är ett objekt och objektets nyckel (name) = namnet på staden */
+alltså argumentet som är ett objekt och objektets nyckel (name) = namnet på staden */
+    if (kindOfCity == "target") {
+        promptObject.style.backgroundColor = "black"
+        promptObject.style.color = "white"
+    } else if (kindOfCity == "closest") {
+        promptObject.style.backgroundColor = "green" // Ändra till manuell style till css class
+        promptObject.style.color = "white"
+    } else if (kindOfCity == "furthest") {
+        promptObject.style.backgroundColor = "blue"
+        promptObject.style.color = "white"
+    }
     console.log(cityObject.name) // Test om det fungerar
-    // Skapa If-satser för att ge unik styling beroende på kindOfCity "target" "closest" "furthest"
 };
 
 markCityObject(cities[2], "target")
