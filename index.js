@@ -23,17 +23,16 @@ function markCityObject(cityObject, kindOfCity) {
     let promptObject = document.getElementById(cityObject.name); /* promptObject refererar till ett HTML-element med ID (argumentet.name), 
 alltså argumentet som är ett objekt och objektets nyckel (name) = namnet på staden */
     if (kindOfCity == "target") {
-        promptObject.style.backgroundColor = "black"
-        promptObject.style.color = "white"
+        promptObject.classList.add("target");
     } else if (kindOfCity == "closest") {
-        promptObject.style.backgroundColor = "green" // Ändra till manuell style till css class
-        promptObject.style.color = "white"
+        promptObject.classList.add("closest");
+        // TextContent som adderar string += `ligger ${variabel av avstånd} mil bort`
     } else if (kindOfCity == "furthest") {
-        promptObject.style.backgroundColor = "blue"
-        promptObject.style.color = "white"
+        promptObject.classList.add("furthest");
+        // TextContent som adderar string += `ligger ${variabel av avstånd} mil bort`
     }
     console.log(cityObject.name) // Test om det fungerar
 };
 
-markCityObject(cities[2], "target")
+markCityObject(cities[2], "furthest")
 console.log(tableDiv)
