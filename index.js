@@ -65,3 +65,37 @@ function getClosestCity(targetCityName) {
 }
 
 
+function getFurthestCity(targetCityName) {
+    let furthest = null;
+    for (let d of distances) {
+        // Kontrollera om staden finns i distansobjektet
+        if (d.city1 === targetCityName.id || d.city2 === targetCityName.id) {
+            // Om ingen närmaste stad hittats eller om den nya distansen är mindre, uppdatera
+            if (!furthest || d.distance > furthest.distance) {
+                furthest = d; // Spara distansobjektet
+            }
+        }
+    }
+    // Hitta ID för den närmaste staden
+    let furthestCityId = null;
+    for (let cityId of [furthest.city1, furthest.city2]) {
+        if (cityId !== targetCityName.id) {
+            furthestCityId = cityId;
+        }
+    }
+
+    // Hitta stadsobjektet manuellt med en loop
+    let furthestCity = null;
+    for (let city of cities) {
+        if (city.id === furthestCityId) {
+            furthestCity = city; // Spara stadsobjektet
+        }
+    }
+    // Returnera den närmaste stadens objekt och avstånd
+    return { name: furthestCity.name, distance: furthest.distance };
+}
+
+
+
+
+
