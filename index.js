@@ -32,8 +32,7 @@ alltså argumentet som är ett objekt och objektets nyckel (name) = namnet på s
 
 markCityBox(cities[2], "closest")
 
-
-
+//CLOSEST FUNKTION
 function getClosestCity(targetCityName) {
     let closest = null;
     for (let d of distances) {
@@ -52,7 +51,6 @@ function getClosestCity(targetCityName) {
             closestCityId = cityId;
         }
     }
-
     // Hitta stadsobjektet manuellt med en loop
     let closestCity = null;
     for (let city of cities) {
@@ -64,7 +62,15 @@ function getClosestCity(targetCityName) {
     return { name: closestCity.name, distance: closest.distance };
 }
 
+let closestCityResult = getClosestCity(cities[2]);
 
+let closestCityResultName = closestCityResult.name;
+console.log(closestCityResultName);
+
+let closestCityResultDistance = closestCityResult.distance / 10;
+console.log(closestCityResultDistance);
+
+//FURTHEST FUNKTION
 function getFurthestCity(targetCityName) {
     let furthest = null;
     for (let d of distances) {
@@ -76,7 +82,7 @@ function getFurthestCity(targetCityName) {
             }
         }
     }
-    // Hitta ID för den närmaste staden
+    // Hitta ID för staden längst bort 
     let furthestCityId = null;
     for (let cityId of [furthest.city1, furthest.city2]) {
         if (cityId !== targetCityName.id) {
@@ -91,10 +97,17 @@ function getFurthestCity(targetCityName) {
             furthestCity = city; // Spara stadsobjektet
         }
     }
-    // Returnera den närmaste stadens objekt och avstånd
+    // Returnera staden längst bort och avstånd
     return { name: furthestCity.name, distance: furthest.distance };
 }
 
+let furthestCityResult = getFurthestCity(cities[2]);
+
+let furthestCityResultName = furthestCityResult.name;
+console.log(furthestCityResultName);
+
+let furthestCityResultDistance = furthestCityResult.distance / 10;
+console.log(furthestCityResultDistance);
 
 
 
