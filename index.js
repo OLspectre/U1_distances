@@ -1,7 +1,6 @@
 // Recommended: All functions declared here
 
 // Recommended: constants with references to existing HTML-elements
-const browserTitle = document.querySelector("title");
 const h2_BigTitle = document.querySelector("h2");
 const h3_InfoText = document.querySelector("h3");
 const cityListDiv = document.getElementById("cities");
@@ -130,6 +129,7 @@ if (targetCityObject != null) {
     const targetCountry = targetCityObject.country;
     let closestCityResult = getClosestCity(targetCityObject);
     let furthestCityResult = getFurthestCity(targetCityObject);
+    document.title = `${targetCityName}`;
     h2_BigTitle.textContent = `${targetCity} (${targetCountry})`;
     h3_InfoText.textContent = `Av städerna i databasen ligger ${closestCityResult.name} närmast och ${furthestCityResult.name} längst bort `
     markCityBox(targetCityObject, "target");
@@ -137,8 +137,9 @@ if (targetCityObject != null) {
     markCityBox(furthestCityResult, "furthest");
     updateBoxDistance(closestCityResult, furthestCityResult);
 } else {
-    browserTitle.textContent = "Not Found";
+    document.title = "Not Found";
     h2_BigTitle.textContent = "";
     h3_InfoText.textContent = `${targetCityName} finns inte i databasen `
-
 }
+
+
