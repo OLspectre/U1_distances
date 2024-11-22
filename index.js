@@ -1,6 +1,10 @@
 // Recommended: All functions declared here
 
 // Recommended: constants with references to existing HTML-elements
+const browserTitle = document.querySelector("title");
+const h3_BigTitle = document.querySelector("h3");
+const h2_InfoText = document.querySelector("h2");
+
 const targetCityName = prompt("En stad");
 const targetCityObject = getCityByName(targetCityName);
 let closestCityResult = getClosestCity(targetCityObject);
@@ -106,13 +110,13 @@ function getCityByName(nameOfCity) {
     for (let city of cities) {
 
         if (city.name === nameOfCity) {
-
+            console.log(city)
             return city;
         }
     }
     return null;  // Om staden inte hittas
 }
-
+getCityByName(targetCityObject)
 
 function updateBoxDistance(closestResultObject, furthestResultObject) {
     const closestDiv = document.querySelector('.closest');
@@ -126,3 +130,5 @@ function updateBoxDistance(closestResultObject, furthestResultObject) {
 }
 
 updateBoxDistance(closestCityResult, furthestCityResult);
+
+
