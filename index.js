@@ -110,8 +110,19 @@ function getCityByName(nameOfCity) {
             return city;
         }
     }
-    return null; // Om staden inte hittas
+    return null;  // Om staden inte hittas
 }
-getCityByName(targetCityObject)
 
 
+function updateBoxDistance(closestResultObject, furthestResultObject) {
+    const closestDiv = document.querySelector('.closest');
+    const furthestDiv = document.querySelector('.furthest');
+    closestDiv.textContent =
+        `${closestResultObject.name} ligger 
+    ${closestResultObject.distance / 10} mil bort`;
+    furthestDiv.textContent =
+        `${furthestCityResult.name} ligger 
+    ${furthestResultObject.distance / 10} mil bort`;
+}
+
+updateBoxDistance(closestCityResult, furthestCityResult);
