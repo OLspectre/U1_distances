@@ -4,6 +4,7 @@
 const h2_BigTitle = document.querySelector("h2");
 const h3_InfoText = document.querySelector("h3");
 const cityListDiv = document.getElementById("cities");
+const tableContainer = document.getElementById("table");
 
 const targetCityName = prompt("En stad");
 const targetCityObject = getCityByName(targetCityName);
@@ -141,5 +142,24 @@ if (targetCityObject != null) {
     h2_BigTitle.textContent = "";
     h3_InfoText.textContent = `${targetCityName} finns inte i databasen `
 }
+
+function createDistanceTable(cities, distances) {
+    const headerRow = document.createElement("div");
+    headerRow.classList.add("head_row");
+
+    const emptyCell = document.createElement("div");
+    emptyCell.classList.add("cell");
+    headerRow.appendChild(emptyCell);
+
+    for (let city of cities) {
+        const isCityHeader = document.createElement("div");
+        isCityHeader.classList.add("cell", "head_column");
+        isCityHeader.textContent = `${city.id}-${city.name}`;
+        headerRow.appendChild(isCityHeader);
+    }
+    tableContainer.appendChild(headerRow);
+}
+
+createDistanceTable(cities, distances)
 
 
