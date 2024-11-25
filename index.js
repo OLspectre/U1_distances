@@ -4,7 +4,7 @@
 const h2_BigTitle = document.querySelector("h2");
 const h3_InfoText = document.querySelector("h3");
 const cityListDiv = document.getElementById("cities");
-const tableContainer = document.getElementById("table");
+const table = document.getElementById("table");
 
 const targetCityName = prompt("En stad");
 const targetCityObject = getCityByName(targetCityName);
@@ -143,23 +143,22 @@ if (targetCityObject != null) {
     h3_InfoText.textContent = `${targetCityName} finns inte i databasen `
 }
 
-function createDistanceTable(cities, distances) {
-    const headerRow = document.createElement("div");
-    headerRow.classList.add("head_row");
 
-    const emptyCell = document.createElement("div");
-    emptyCell.classList.add("cell");
-    headerRow.appendChild(emptyCell);
+function createDistancesTable(cities, distances) {
 
-    for (let city of cities) {
-        const isCityHeader = document.createElement("div");
-        isCityHeader.classList.add("cell", "head_column");
-        isCityHeader.textContent = `${city.id}-${city.name}`;
-        headerRow.appendChild(isCityHeader);
+    // Create top row (city IDs)
+    const emptyCell = document.createElement('div');
+    emptyCell.classList.add('cell', 'corner_cell');
+    emptyCell.innerHTML = "&nbsp;"
+    table.appendChild(emptyCell);
+
+    // Create header cells for cities in the top row (city ids)
+    for (const city of cities) {
+        const headColCell = document.createElement('div');
+        headColCell.classList.add('cell', 'head_column');
+        headColCell.textContent = city.id;
+        table.appendChild(headColCell);
     }
-    tableContainer.appendChild(headerRow);
 }
-
-createDistanceTable(cities, distances)
-
-
+// Call the function to generate the table
+createDistancesTable(cities, distances);
