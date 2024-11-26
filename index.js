@@ -145,14 +145,13 @@ function createDistancesTable(citiesArray, distancesArray) {
     };
 };
 
-// Recommended: constants with references to existing HTML-elements
 const h2_BigTitle = document.querySelector("h2");
 const h3_InfoText = document.querySelector("h3");
 const cityListDiv = document.getElementById("cities");
 const table = document.getElementById("table");
 
 createAllCityBoxes();
-// Recommended: Ask for the city name and then the rest of the code
+
 const targetCityName = prompt("En stad");
 const targetCityObject = getCityByName(targetCityName);
 
