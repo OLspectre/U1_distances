@@ -1,15 +1,3 @@
-// Recommended: All functions declared here
-
-// Recommended: constants with references to existing HTML-elements
-const h2_BigTitle = document.querySelector("h2");
-const h3_InfoText = document.querySelector("h3");
-const cityListDiv = document.getElementById("cities");
-const table = document.getElementById("table");
-
-// Recommended: Ask for the city name and then the rest of the code
-const targetCityName = prompt("En stad");
-const targetCityObject = getCityByName(targetCityName);
-
 function createAllCityBoxes() {
     for (let city of cities) {
         let eachCityName = document.createElement("div");
@@ -19,7 +7,6 @@ function createAllCityBoxes() {
         eachCityName.id = city.name;
     }
 };
-createAllCityBoxes();
 
 function markCityBox(cityObject, kindOfCity) {
     let isCityBox = document.getElementById(cityObject.name);
@@ -31,7 +18,6 @@ function markCityBox(cityObject, kindOfCity) {
         isCityBox.classList.add("furthest");
     }
 };
-//CLOSEST FUNKTION
 function getClosestCity(targetCityObject) {
     let closest = null;
     for (let d of distances) {
@@ -56,7 +42,6 @@ function getClosestCity(targetCityObject) {
     return { name: closestCity.name, distance: closest.distance };
 }
 
-//FURTHEST FUNKTION
 function getFurthestCity(targetCityObject) {
     let furthest = null;
     for (let d of distances) {
@@ -88,7 +73,6 @@ function getCityByName(nameOfCity) {
     for (let city of cities) {
 
         if (city.name === nameOfCity) {
-            console.log(city)
             return city;
         }
     }
@@ -104,25 +88,6 @@ function updateBoxDistance(closestResultObject, furthestResultObject) {
     furthestDiv.textContent =
         `${furthestResultObject.name} ligger 
     ${furthestResultObject.distance / 10} mil bort`;
-}
-
-
-if (targetCityObject != null) {
-    const targetCity = targetCityObject.name;
-    const targetCountry = targetCityObject.country;
-    let closestCityResult = getClosestCity(targetCityObject);
-    let furthestCityResult = getFurthestCity(targetCityObject);
-    document.title = `${targetCityName}`;
-    h2_BigTitle.textContent = `${targetCity} (${targetCountry})`;
-    h3_InfoText.textContent = `Av städerna i databasen ligger ${closestCityResult.name} närmast och ${furthestCityResult.name} längst bort `
-    markCityBox(targetCityObject, "target");
-    markCityBox(closestCityResult, "closest");
-    markCityBox(furthestCityResult, "furthest");
-    updateBoxDistance(closestCityResult, furthestCityResult);
-} else {
-    document.title = "Not Found";
-    h2_BigTitle.textContent = "";
-    h3_InfoText.textContent = `${targetCityName} finns inte i databasen `
 }
 
 function createDistancesTable(cities, distances) {
@@ -175,4 +140,33 @@ function createDistancesTable(cities, distances) {
         }
     }
 }
+// Recommended: constants with references to existing HTML-elements
+const h2_BigTitle = document.querySelector("h2");
+const h3_InfoText = document.querySelector("h3");
+const cityListDiv = document.getElementById("cities");
+const table = document.getElementById("table");
+
+createAllCityBoxes();
+// Recommended: Ask for the city name and then the rest of the code
+const targetCityName = prompt("En stad");
+const targetCityObject = getCityByName(targetCityName);
+
+if (targetCityObject != null) {
+    const targetCity = targetCityObject.name;
+    const targetCountry = targetCityObject.country;
+    let closestCityResult = getClosestCity(targetCityObject);
+    let furthestCityResult = getFurthestCity(targetCityObject);
+    document.title = `${targetCityName}`;
+    h2_BigTitle.textContent = `${targetCity} (${targetCountry})`;
+    h3_InfoText.textContent = `Av städerna i databasen ligger ${closestCityResult.name} närmast och ${furthestCityResult.name} längst bort `
+    markCityBox(targetCityObject, "target");
+    markCityBox(closestCityResult, "closest");
+    markCityBox(furthestCityResult, "furthest");
+    updateBoxDistance(closestCityResult, furthestCityResult);
+} else {
+    document.title = "Not Found";
+    h2_BigTitle.textContent = "";
+    h3_InfoText.textContent = `${targetCityName} finns inte i databasen `
+}
+
 createDistancesTable(cities, distances);
